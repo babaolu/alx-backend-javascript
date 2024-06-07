@@ -1,4 +1,4 @@
-import globals from "globals";
+const globals = require('globals');
 const jest = require('eslint-plugin-jest');
 const airbnbBase = require('eslint-config-airbnb-base');
 
