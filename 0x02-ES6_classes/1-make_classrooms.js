@@ -1,11 +1,11 @@
-import Classroom from './0-classroom';
+import ClassRoom from './0-classroom';
 
 export default function initializeRooms() {
   const sizes = [19, 20, 34];
   const rooms = [];
 
   for (let size of sizes) {
-    rooms.push(new Classroom(size));
+    rooms.push(new ClassRoom(size));
   }
   return rooms;
 }
