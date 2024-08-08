@@ -13,18 +13,19 @@ function countStudents(path) {
       lines.shift();
       lines = lines.filter((line) => line);
       const message = [];
-    
-      message.push(`Number of students : ${ lines.length }`);
-    
-      for (let i = 0; i < lines.length; i++) {
+
+      message.push(`Number of students : ${lines.length}`);
+
+      for (let i = 0; i < lines.length; i += 1) {
         lines[i] = lines[i].split(',');
       }
-      const fields = new Set(lines.map(line => line[3]));
+      const fields = new Set(lines.map((line) => line[3]));
       for (const field of fields) {
-        let fiLines = lines.filter(line => line[3] == field);
-        message.push(`Number of students in ${field}: ${fiLines.length}. List: ` +
-          fiLines.reduce((acc, curVal) => acc.concat(', ', curVal[0]), '')
-            .slice(2));
+        const fiLines = lines.filter((line) => line[3] === field);
+        message.push(`Number of students in ${field}: ${fiLines
+          .length}. List: ${fiLines
+          .reduce((acc, curVal) => acc.concat(', ', curVal[0]), '')
+          .slice(2)}`);
       }
       resolve(message.join('\n'));
     } catch (err) {
@@ -40,8 +41,8 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   const path = argv[2];
   countStudents(path)
-    .then(value => res.send(`This is the list of our students\n${ value }`));
-})
+    .then((value) => res.send(`This is the list of our students\n${value}`));
+});
 
 app.listen(port);
 

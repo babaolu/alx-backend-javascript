@@ -10,18 +10,19 @@ function countStudents(path) {
       lines.shift();
       lines = lines.filter((line) => line);
       const message = [];
-    
-      message.push(`Number of students : ${ lines.length }`);
-    
-      for (let i = 0; i < lines.length; i++) {
+
+      message.push(`Number of students : ${lines.length}`);
+
+      for (let i = 0; i < lines.length; i += 1) {
         lines[i] = lines[i].split(',');
       }
-      const fields = new Set(lines.map(line => line[3]));
+      const fields = new Set(lines.map((line) => line[3]));
       for (const field of fields) {
-        let fiLines = lines.filter(line => line[3] == field);
-        message.push(`Number of students in ${field}: ${fiLines.length}. List: ` +
-          fiLines.reduce((acc, curVal) => acc.concat(', ', curVal[0]), '')
-            .slice(2));
+        const fiLines = lines.filter((line) => line[3] === field);
+        message.push(`Number of students in ${field}: ${fiLines
+          .length}. List: ${fiLines
+          .reduce((acc, curVal) => acc.concat(', ', curVal[0]), '')
+          .slice(2)}`);
       }
       resolve(message.join('\n'));
     } catch (err) {
@@ -31,12 +32,12 @@ function countStudents(path) {
 }
 
 const app = http.createServer((request, response) => {
-  if (request.url === '/')
+  if (request.url === '/') {
     response.end('Hello Holberton School!');
-  else if (request.url === '/students') {
+  } else if (request.url === '/students') {
     const path = argv[2];
     response.write('This is the list of our students\n');
-    countStudents(path).then((value => response.end(value)));
+    countStudents(path).then(((value) => response.end(value)));
   }
 });
 app.listen(1245);
