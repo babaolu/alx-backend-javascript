@@ -1,6 +1,6 @@
 const express = require('express');
-const fs = require('node:fs');
-const { argv } = require('node:process');
+const fs = require('fs');
+const { argv } = require('process');
 
 const app = express();
 const port = 1245;

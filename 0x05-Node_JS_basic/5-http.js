@@ -1,6 +1,6 @@
-const http = require('node:http');
-const fs = require('node:fs');
-const { argv } = require('node:process');
+const http = require('http');
+const fs = require('fs');
+const { argv } = require('process');
 
 function countStudents(path) {
   return new Promise((resolve, reject) => {
