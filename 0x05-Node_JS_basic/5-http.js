@@ -37,7 +37,8 @@ const app = http.createServer((request, response) => {
   } else if (request.url === '/students') {
     const path = argv[2];
     response.write('This is the list of our students\n');
-    countStudents(path).then(((value) => response.end(value)));
+    countStudents(path).then(((value) => response.end(value)))
+    .catch((e) => response.end(e.message));
   }
 });
 app.listen(1245);
